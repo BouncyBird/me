@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message|safe }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+        </div>
+    </div>
+</main>
+{% endif %}
+{% endwith %}
+<div class="m-3">
+    <p>You are {% if not current_user.is_authenticated %}NOT{% endif %} logged in</p>
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Create Poll</legend>
+            <div class="form-group">
+                {{ form.question.label(class="form-control-label") }}
+                {% if form.question.errors %}
+                {{ form.question(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.question.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.question(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group mt-3 mb-3">
+                {{ form.options.label(class="form-control-label") }}
+                {% if form.options.errors %}
+                {{ form.options(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.options.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.options(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-check" data-aos="zoom-in">
+                {{ form.multiplesubs(class="form-check-input") }}
+                {{ form.multiplesubs.label(class="form-check-label") }}
+            </div>
+            <div class="form-group mt-3 mb-3">
+                {% if form.recaptcha.errors %}
+                {{ form.recaptcha(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.recaptcha.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.recaptcha(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

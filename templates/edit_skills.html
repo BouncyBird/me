@@ -1,0 +1,183 @@
+{% extends "main.html" %}
+{% block content %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+        </div>
+    </div>
+</main>
+<form class="contact-form m-5" method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Edit</legend>
+        <div class="form-group">
+            {{ form.skillonetitle.label(class="form-control-label") }}
+
+            {% if form.skillonetitle.errors %}
+            {{ form.skillonetitle(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillonetitle.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillonetitle(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skillonelevel.label(class="form-control-label") }}
+
+            {% if form.skillonelevel.errors %}
+            {{ form.skillonelevel(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillonelevel.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillonelevel(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skillone.label(class="form-control-label") }}
+
+            {% if form.skillone.errors %}
+            {{ form.skillone(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillone.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillone(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skilltwotitle.label(class="form-control-label") }}
+
+            {% if form.skilltwotitle.errors %}
+            {{ form.skilltwotitle(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skilltwotitle.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skilltwotitle(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skilltwolevel.label(class="form-control-label") }}
+
+            {% if form.skilltwolevel.errors %}
+            {{ form.skilltwolevel(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skilltwolevel.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skilltwolevel(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skilltwo.label(class="form-control-label") }}
+
+            {% if form.skilltwo.errors %}
+            {{ form.skilltwo(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skilltwo.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skilltwo(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skillthreetitle.label(class="form-control-label") }}
+
+            {% if form.skillthreetitle.errors %}
+            {{ form.skillthreetitle(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillthreetitle.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillthreetitle(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skillthreelevel.label(class="form-control-label") }}
+
+            {% if form.skillthreelevel.errors %}
+            {{ form.skillthreelevel(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillthreelevel.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillthreelevel(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skillthree.label(class="form-control-label") }}
+
+            {% if form.skillthree.errors %}
+            {{ form.skillthree(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillthree.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillthree(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skillfourtitle.label(class="form-control-label") }}
+
+            {% if form.skillfourtitle.errors %}
+            {{ form.skillfourtitle(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillfourtitle.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillfourtitle(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skillfourlevel.label(class="form-control-label") }}
+
+            {% if form.skillfourlevel.errors %}
+            {{ form.skillfourlevel(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skillfourlevel.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.skillfourlevel(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-default") }}
+    </div>
+</form>
+{% endblock %}

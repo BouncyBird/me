@@ -1,0 +1,1 @@
+$("#newtaball").attr("target", "_blank");

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Authenticity</title>
+</head>
+
+<body>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <br>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <br>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+    <form class="" method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.submit() }}
+        </div>
+    </form>
+</body>
+
+</html>

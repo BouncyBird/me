@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="m-4">
+    <h1>Listing: {{ dr }}</h1>
+    <ul>
+        {% for file in files %}
+        <li>
+            <a
+                href="{% if isdir(path+file) %}{{ url_for('viewdir', filename=dr+'/'+file) }}{% else %}{{ url_for('viewfile', filename=dr+'/'+file) }}{% endif %}">
+                {{ file }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

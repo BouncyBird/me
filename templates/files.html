@@ -1,0 +1,58 @@
+{% extends "main.html" %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+        </div>
+    </div>
+</main>
+{% endif %}
+{% endwith %}
+<div class="m-3">
+    <h1>File Upload</h1>
+    <form action="{{ url_for('upload_files') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required multiple /><br><br>
+        Location - Optional (E.g. backgrounds/cool/):
+        <input class="form-control" type="text" id="location" name="location"><br>
+        Protected File:&nbsp;
+        <input class="form-check" type="checkbox" id="protected" name="protected" checked><br>
+        Password(Will not be honored if file is public) - Optional:
+        <input class="form-control" type="password" id="password" name="password"><br>
+        <input class="btn btn-info btn-outline" type="submit" value="Upload">
+    </form>
+    <hr>
+    {% if files %}
+    <h1>List of files on server</h1>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Protected</th>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr>
+                <td><a href="{{ url_for('viewfile', filename=file.path) }}">{{ file.path }}</a>&nbsp;&nbsp;</td>
+                <td>{{ humanize.naturalsize(file.size) }}&nbsp;&nbsp;</td>
+                <td>{{ file.protected }}&nbsp;&nbsp;</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Eshan Nalajala</title>
+	<meta name="description" content="Eshan Nalajala">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='avatar.svg') }}">
+
+	<!-- STYLESHEETS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='files/bootstrap.min.css') }}" type="text/css"
+		media="all">
+	<link rel="stylesheet" href="{{ url_for('static', filename='files/all.min.css') }}" type="text/css" media="all">
+	<link rel="stylesheet" href="{{ url_for('static', filename='files/simple-line-icons.css') }}" type="text/css"
+		media="all">
+	<link rel="stylesheet" href="{{ url_for('static', filename='files/slick.css') }}" type="text/css" media="all">
+	<link rel="stylesheet" href="{{ url_for('static', filename='files/animate.css') }}" type="text/css" media="all">
+	<link rel="stylesheet" href="{{ url_for('static', filename='files/magnific-popup.css') }}" type="text/css"
+		media="all">
+	<link rel="stylesheet" href="{{ url_for('static', filename='files/style.css') }}" type="text/css" media="all">
+	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+	<script src="{{ url_for('static', filename='tilt.js') }}"></script>
+</head>
+
+<body class="dark">
+	<!-- Preloader -->
+	<div id="preloader" style="display: none;">
+		<div class="outer">
+			<!-- Google Chrome -->
+			<div class="infinityChrome">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+
+			<!-- Safari and others -->
+			<div class="infinity">
+				<div>
+					<span></span>
+				</div>
+				<div>
+					<span></span>
+				</div>
+				<div>
+					<span></span>
+				</div>
+			</div>
+			<!-- Stuff -->
+			<svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo-outer">
+				<defs>
+					<filter id="goo">
+						<fegaussianblur in="SourceGraphic" stdDeviation="6" result="blur"></fegaussianblur>
+						<fecolormatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo">
+						</fecolormatrix>
+						<feblend in="SourceGraphic" in2="goo"></feblend>
+					</filter>
+				</defs>
+			</svg>
+		</div>
+	</div>
+
+
+
+	{% block content %}
+	{% endblock %}
+
+
+	<!-- SCRIPTS -->
+	<script src="{{ url_for('static', filename='files/jquery-1.12.3.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/jquery.easing.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/jquery.waypoints.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/jquery.counterup.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/popper.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/bootstrap.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/isotope.pkgd.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/infinite-scroll.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/imagesloaded.pkgd.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/slick.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/contact.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/validator.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/wow.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/morphext.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/parallax.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/jquery.magnific-popup.min.js.download') }}"></script>
+	<script src="{{ url_for('static', filename='files/custom.js.download') }}"></script>
+
+	<script>
+		$(".newtaball").attr("target", "_blank");
+	</script>
+
+
+	<script>
+		var scroll = new SmoothScroll('a[href*="#"]');
+	</script>
+	<script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+	{{ ckeditor.config(name='content') }}
+
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init();
+	</script>
+	<script src="{{ url_for('static', filename='tilt.js') }}"></script>
+</body>
+
+</html>

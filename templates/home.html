@@ -1,0 +1,625 @@
+{% extends "main.html" %}
+{% block content %}
+{% if hurl == 'http://eshan.biz/' %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            <div class="alert alert-info">
+                My site has changed. It is now <a href="https://eshan.dev/">eshan.dev</a>. eshan.biz will soon shut
+                down.
+            </div>
+            <br>
+        </div>
+    </div>
+</main>
+{% endif %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+        </div>
+    </div>
+</main>
+{% endif %}
+{% endwith %}
+<!-- mobile header -->
+<header class="mobile-header-1">
+    <div class="container">
+        <!-- menu icon -->
+        <div class="menu-icon d-inline-flex mr-4">
+            <button>
+                <span></span>
+            </button>
+        </div>
+        <!-- logo image -->
+        <div class="site-logo">
+            <a class="navbar-brand" href="{{ url_for('home') }}" style="font-family: Audiowide; font-size: 150%;">Eshan
+                Nalajala</a>
+        </div>
+    </div>
+</header>
+
+<!-- desktop header -->
+<header class="desktop-header-1 d-flex align-items-start flex-column">
+
+    <!-- logo image -->
+    <div class="site-logo">
+        <a class="navbar-brand" href="{{ url_for('home') }}" style="font-family: Audiowide; font-size: 150%;">Eshan
+            Nalajala</a>
+    </div>
+
+    <!-- main menu -->
+    <nav>
+        <ul class="vertical-menu scrollspy">
+            <li data-tilt data-tilt-scale="1.1" class="active"><a href="#home" class="nav-link"><i
+                        class="fas fa-home"></i>‎‎&nbsp ‎‎&nbsp
+                    Home</a>
+            </li>
+            <li data-tilt data-tilt-scale="1.1"><a href="#about" class="nav-link active"><i
+                        class="fas fa-info-circle"></i>‎‎&nbsp ‎‎&nbsp
+                    About</a>
+            </li>
+            <li data-tilt data-tilt-scale="1.1"><a href="#services" class="nav-link"><i class="fas fa-code"></i>‎‎&nbsp
+                    Skills</a></li>
+            <li data-tilt data-tilt-scale="1.1"><a href="#works" class="nav-link"><i
+                        class="fas fa-code-branch"></i>‎‎&nbsp ‎‎&nbsp Projects</a>
+            </li>
+            <li data-tilt data-tilt-scale="1.1"><a href="#contact" class="nav-link"><i
+                        class="fas fa-paper-plane"></i>‎‎&nbsp ‎‎&nbsp
+                    Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- site footer -->
+    <div class="footer">
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('logout') }}" class="btn btn-warning btn-sm mb-2"
+            style="margin-left: 50%;margin-right: 50%;">Logout</a><br>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-info btn-sm mb-2"
+            style="margin-left: 50%;margin-right: 50%;">Login</a><br>
+        {% endif %}
+        <!-- copyright text -->
+        <span class="copyright">© 2021 Eshan Nalajala</span>
+    </div>
+
+</header>
+<!-- main layout -->
+<main class="content">
+
+    <!-- section home -->
+    <section id="home" class="home d-flex align-items-center">
+        <div class="container">
+
+            <!-- intro -->
+            <div class="intro">
+                <!-- avatar image -->
+                <img src="{{ url_for('static', filename='avatar.svg') }}" alt="Eshan" class="mb-4" data-aos="zoom-in">
+
+                <!-- info -->
+                <h1 class="mb-2 mt-0" style="font-family: Source Code Pro;" data-aos="fade-right">Eshan Nalajala
+                </h1>
+                <span style="font-family: Source Code Pro;" data-aos="fade-right">Developer -
+                    Pythonista - Genius
+                </span>
+
+                <!-- social icons -->
+                <ul class="social-icons light list-inline mb-0 mt-4" data-aos="fade-down">
+                    <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
+                            title="My GitHub" href="https://github.com/BouncyBird" target="_blank"><i data-tilt
+                                data-tilt-scale="1.1" class="fab fa-github"></i></a>
+                    </li>
+                    <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
+                            title="My LinkedIn" href="https://www.linkedin.com/in/eshan-nalajala-8baa3a211"
+                            target="_blank"><i data-tilt data-tilt-scale="1.1" class="fab fa-linkedin"></i></a></li>
+                    <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
+                            title="My StackOverflow"
+                            href="https://stackoverflow.com/users/16117401/hackdolphin?tab=profile" target="_blank"><i
+                                data-tilt data-tilt-scale="1.1" class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
+                            title="My Facebook" href="https://www.facebook.com/eshan.nalajala/" target="_blank"><i
+                                data-tilt data-tilt-scale="1.1" class="fab fa-facebook"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- scroll down mouse wheel -->
+            <div class="scroll-down">
+                <a href="#about" class="mouse-wrapper">
+                    <span class="mouse">
+                        <span class="wheel"></span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- parallax layers -->
+            <div class="parallax" data-relative-input="true"
+                style="transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden;">
+
+                <svg width="27" height="29" data-depth="0.3" class="layer p1" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(39.2857px, -88.9873px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block;">
+                    <path
+                        d="M21.15625.60099c4.37954 3.67487 6.46544 9.40612 5.47254 15.03526-.9929 5.62915-4.91339 10.30141-10.2846 12.25672-5.37122 1.9553-11.3776.89631-15.75715-2.77856l2.05692-2.45134c3.50315 2.93948 8.3087 3.78663 12.60572 2.22284 4.297-1.5638 7.43381-5.30209 8.22768-9.80537.79387-4.50328-.8749-9.08872-4.37803-12.02821L21.15625.60099z"
+                        fill="#FFD15C" fill-rule="evenodd"></path>
+                </svg>
+
+                <svg width="26" height="26" data-depth="0.2" class="layer p2" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(26.1905px, -59.3249px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <path d="M13 3.3541L2.42705 24.5h21.1459L13 3.3541z" stroke="#FF4C60" stroke-width="3" fill="none"
+                        fill-rule="evenodd"></path>
+                </svg>
+
+                <svg width="30" height="25" data-depth="0.3" class="layer p3" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(39.2857px, -88.9873px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <path
+                        d="M.1436 8.9282C3.00213 3.97706 8.2841.92763 14.00013.92796c5.71605.00032 10.9981 3.04992 13.85641 8 2.8583 4.95007 2.8584 11.0491-.00014 16.00024l-2.77128-1.6c2.28651-3.96036 2.28631-8.84002.00011-12.8002-2.2862-3.96017-6.5124-6.40017-11.08513-6.4-4.57271.00018-8.79872 2.43984-11.08524 6.4002l-2.77128-1.6z"
+                        fill="#44D7B6" fill-rule="evenodd"></path>
+                </svg>
+
+                <svg width="15" height="23" data-depth="0.6" class="layer p4" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(78.5714px, -177.975px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <rect transform="rotate(30 9.86603 10.13397)" x="7" width="3" height="25" rx="1.5" fill="#FFD15C"
+                        fill-rule="evenodd"></rect>
+                </svg>
+
+                <svg width="15" height="23" data-depth="0.2" class="layer p5" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(26.1905px, -59.3249px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <rect transform="rotate(30 9.86603 10.13397)" x="7" width="3" height="25" rx="1.5" fill="#6C6CE5"
+                        fill-rule="evenodd"></rect>
+                </svg>
+
+                <svg width="49" height="17" data-depth="0.5" class="layer p6" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(65.4762px, -148.312px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <g fill="#FF4C60" fill-rule="evenodd">
+                        <path
+                            d="M.5 16.5c0-5.71709 2.3825-10.99895 6.25-13.8567 3.8675-2.85774 8.6325-2.85774 12.5 0C23.1175 5.50106 25.5 10.78292 25.5 16.5H23c0-4.57303-1.90625-8.79884-5-11.08535-3.09375-2.28652-6.90625-2.28652-10 0C4.90625 7.70116 3 11.92697 3 16.5H.5z">
+                        </path>
+                        <path
+                            d="M23.5 16.5c0-5.71709 2.3825-10.99895 6.25-13.8567 3.8675-2.85774 8.6325-2.85774 12.5 0C46.1175 5.50106 48.5 10.78292 48.5 16.5H46c0-4.57303-1.90625-8.79884-5-11.08535-3.09375-2.28652-6.90625-2.28652-10 0-3.09375 2.28651-5 6.51232-5 11.08535h-2.5z">
+                        </path>
+                    </g>
+                </svg>
+
+                <svg width="26" height="26" data-depth="0.4" class="layer p7" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(52.381px, -118.65px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <path d="M13 22.6459L2.42705 1.5h21.1459L13 22.6459z" stroke="#FFD15C" stroke-width="3" fill="none"
+                        fill-rule="evenodd"></path>
+                </svg>
+
+                <svg width="19" height="21" data-depth="0.3" class="layer p8" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(39.2857px, -88.9873px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <rect transform="rotate(-40 6.25252 10.12626)" x="7" width="3" height="25" rx="1.5" fill="#6C6CE5"
+                        fill-rule="evenodd"></rect>
+                </svg>
+
+                <svg width="30" height="25" data-depth="0.3" data-depth-y="-1.30" class="layer p9"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(39.2857px, -88.9873px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <path
+                        d="M29.8564 16.0718c-2.85854 4.95114-8.1405 8.00057-13.85654 8.00024-5.71605-.00032-10.9981-3.04992-13.85641-8-2.8583-4.95007-2.8584-11.0491.00014-16.00024l2.77128 1.6c-2.28651 3.96036-2.28631 8.84002-.00011 12.8002 2.2862 3.96017 6.5124 6.40017 11.08513 6.4 4.57271-.00018 8.79872-2.43984 11.08524-6.4002l2.77128 1.6z"
+                        fill="#6C6CE5" fill-rule="evenodd"></path>
+                </svg>
+
+                <svg width="47" height="29" data-depth="0.2" class="layer p10" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(26.1905px, -59.3249px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <g fill="#44D7B6" fill-rule="evenodd">
+                        <path
+                            d="M46.78878 17.19094c-1.95535 5.3723-6.00068 9.52077-10.61234 10.8834-4.61167 1.36265-9.0893-.26708-11.74616-4.27524-2.65686-4.00817-3.08917-9.78636-1.13381-15.15866l2.34923.85505c-1.56407 4.29724-1.2181 8.92018.90705 12.12693 2.12514 3.20674 5.70772 4.5107 9.39692 3.4202 3.68921-1.0905 6.92581-4.40949 8.48988-8.70673l2.34923.85505z">
+                        </path>
+                        <path
+                            d="M25.17585 9.32448c-1.95535 5.3723-6.00068 9.52077-10.61234 10.8834-4.61167 1.36264-9.0893-.26708-11.74616-4.27525C.16049 11.92447-.27182 6.14628 1.68354.77398l2.34923.85505c-1.56407 4.29724-1.2181 8.92018.90705 12.12692 2.12514 3.20675 5.70772 4.5107 9.39692 3.4202 3.68921-1.0905 6.92581-4.40948 8.48988-8.70672l2.34923.85505z">
+                        </path>
+                    </g>
+                </svg>
+
+                <svg width="33" height="20" data-depth="0.5" class="layer p11" xmlns="http://www.w3.org/2000/svg"
+                    style="transform: translate3d(65.4762px, -148.312px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block;">
+                    <path
+                        d="M32.36774.34317c.99276 5.63023-1.09332 11.3614-5.47227 15.03536-4.37895 3.67396-10.3855 4.73307-15.75693 2.77837C5.76711 16.2022 1.84665 11.53014.8539 5.8999l3.15139-.55567c.7941 4.50356 3.93083 8.24147 8.22772 9.8056 4.29688 1.56413 9.10275.71673 12.60554-2.2227C28.34133 9.98771 30.01045 5.4024 29.21635.89884l3.15139-.55567z"
+                        fill="#FFD15C" fill-rule="evenodd"></path>
+                </svg>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- section about -->
+    <section id="about">
+
+        <div class="container">
+
+            <!-- section title -->
+            <h2 class="section-title" style="visibility: visible;" data-aos="fade-up">About Me
+            </h2>
+
+            <div class="spacer" data-height="60" style="height: 60px;"></div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="text-center text-md-left">
+                        <!-- avatar image -->
+                        <img src="{{ url_for('static', filename='avatar.svg') }}" alt="Eshan" data-aos="zoom-in">
+                    </div>
+                    <div class="spacer d-md-none d-lg-none" data-height="30" style="height: 30px;"></div>
+                </div>
+
+                <div class="col-md-9 triangle-left-md triangle-top-sm">
+                    <div class="rounded bg-dark shadow-light padding-30" data-aos="fade-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- about text -->
+                                <p class="mb-0">{{ content.about|safe }} {% if current_user.is_authenticated %} &nbsp <a
+                                        href="{{ url_for('edit_about') }}" class=""><i class="fas fa-edit"></i></a>{%
+                                    endif %}
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="text-center mb-3 mt-0">Skill Levels{% if current_user.is_authenticated %}
+                                    &nbsp <a href="{{ url_for('edit_skills') }}" class=""><i
+                                            class="fas fa-edit"></i></a>{% endif %}</h3>
+                                <!-- skill item -->
+                                <div class="skill-item">
+                                    <div class="skill-info clearfix">
+                                        <h4 class="float-left mb-3 mt-0">{{ content.skillonetitle|safe }}</h4>
+                                        <span class="float-right">{{ content.skillonelevel|safe }}%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar data-background" role="progressbar" aria-valuemin="0"
+                                            aria-valuemax="100" aria-valuenow="{{ content.skillonelevel }}"
+                                            data-color="#FFD15C"
+                                            style="background-color: rgb(255, 209, 92); width: {{ content.skillonelevel }}%;">
+                                        </div>
+                                    </div>
+                                    <div class="spacer" data-height="20" style="height: 20px;"></div>
+                                </div>
+
+                                <!-- skill item -->
+                                <div class="skill-item">
+                                    <div class="skill-info clearfix">
+                                        <h4 class="float-left mb-3 mt-0">{{ content.skilltwotitle|safe }}</h4>
+                                        <span class="float-right">{{ content.skilltwolevel|safe }}%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar data-background" role="progressbar" aria-valuemin="0"
+                                            aria-valuemax="100" aria-valuenow="{{ content.skilltwolevel }}"
+                                            data-color="#6C6CE5"
+                                            style="background-color: rgb(108, 108, 229); width: {{ content.skilltwolevel }}%;">
+                                        </div>
+                                    </div>
+                                    <div class="spacer" data-height="20" style="height: 20px;"></div>
+                                </div>
+
+                                <!-- skill item -->
+                                <div class="skill-item">
+                                    <div class="skill-info clearfix">
+                                        <h4 class="float-left mb-3 mt-0">{{ content.skillthreetitle|safe }}</h4>
+                                        <span class="float-right">{{ content.skillthreelevel|safe }}%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar data-background" role="progressbar" aria-valuemin="0"
+                                            aria-valuemax="100" aria-valuenow="{{ content.skillthreelevel }}"
+                                            data-color="#FF4C60"
+                                            style="background-color: rgb(255, 76, 96); width: {{ content.skillthreelevel }}%;">
+                                        </div>
+                                    </div>
+                                    <div class="spacer" data-height="20" style="height: 20px;"></div>
+                                </div>
+
+                                <!-- skill item -->
+                                <div class="skill-item">
+                                    <div class="skill-info clearfix">
+                                        <h4 class="float-left mb-3 mt-0">{{ content.skillfourtitle|safe }}</h4>
+                                        <span class="float-right">{{ content.skillfourlevel|safe }}%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar data-background" role="progressbar" aria-valuemin="0"
+                                            aria-valuemax="100" aria-valuenow="{{ content.skillfourlevel }}"
+                                            data-color="#3990f3"
+                                            style="background-color: rgb(57, 144, 243); width: {{ content.skillfourlevel }}%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- row end -->
+
+
+        </div>
+
+        </div>
+
+    </section>
+
+    <!-- section services -->
+    <section id="services">
+
+        <div class="container">
+
+            <!-- section title -->
+            <h2 class="section-title" style="visibility: visible;" data-aos="fade-up">Coding
+                Skills
+            </h2>
+
+            <div class="spacer" data-height="60" style="height: 60px;"></div>
+
+            <div class="row">
+
+                <div class="col-md-4" data-aos="zoom-in-right" data-aos-delay="200">
+                    <!-- service box -->
+                    <div class="service-box rounded data-background padding-30 text-center text-light shadow-blue"
+                        data-color="#6C6CE5" style="background-color: rgb(108, 108, 229);">
+                        <img src="{{ url_for('static', filename='flask.svg') }}" alt="Flask Logo">
+                        <h3 class="mb-3 mt-0">{{ content.skilltwotitle|safe }} {% if current_user.is_authenticated %}
+                            &nbsp <a href="{{ url_for('edit_skills') }}" class=""><i class="fas fa-edit"></i></a>{%
+                            endif %}</h3>
+                        <p class="mb-0">{{ content.skilltwo|safe }}</p>
+                    </div>
+                    <div class="spacer d-md-none d-lg-none" data-height="30" style="height: 30px;"></div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in">
+                    <!-- service box -->
+                    <div class="service-box rounded data-background padding-30 text-center shadow-yellow"
+                        data-color="#F9D74C" style="background-color: rgb(249, 215, 76);">
+                        <img src="https://img.icons8.com/nolan/96/python.png" />
+                        <h3 class="mb-3 mt-0">{{ content.skillonetitle|safe }} {% if current_user.is_authenticated %}
+                            &nbsp <a href="{{ url_for('edit_skills') }}" class=""><i class="fas fa-edit"></i></a>{%
+                            endif %}</h3>
+                        <p class="mb-0">{{ content.skillone|safe }}</p>
+                    </div>
+                    <div class="spacer d-md-none d-lg-none" data-height="30" style="height: 30px;"></div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in-left" data-aos-delay="300">
+                    <!-- service box -->
+                    <div class="service-box rounded data-background padding-30 text-center text-light shadow-pink"
+                        data-color="#F97B8B" style="background-color: rgb(249, 123, 139);">
+                        <img src="https://img.icons8.com/nolan/96/html-5.png" />
+                        <h3 class="mb-3 mt-0">{{ content.skillthreetitle|safe }} {% if current_user.is_authenticated %}
+                            &nbsp <a href="{{ url_for('edit_skills') }}" class=""><i class="fas fa-edit"></i></a>{%
+                            endif %}</h3>
+                        <p class="mb-0">{{ content.skillthree|safe }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- section works -->
+    <section id="works">
+
+        <div class="container">
+
+            <!-- section title -->
+            <h2 class="section-title" style="visibility: visible;" data-aos="fade-up">Best
+                Projects{% if current_user.is_authenticated %} &nbsp <a href="{{ url_for('new_project') }}" class=""><i
+                        class="fas fa-plus"></i></a>{%
+                endif %}</h2>
+
+            <div class="spacer" data-height="60" style="height: 60px;"></div>
+
+            <!-- portfolio filter (desktop) -->
+            <ul class="portfolio-filter list-inline" data-aos="fade-up" style="visibility: visible;">
+                <li class="current list-inline-item" data-filter="*">Everything</li>
+                <li class="list-inline-item" data-filter=".python">Python</li>
+                <li class="list-inline-item" data-filter=".flask">Flask</li>
+                <li class="list-inline-item" data-filter=".django">Django</li>
+                <li class="list-inline-item" data-filter=".htmlcss">HTML + CSS</li>
+            </ul>
+
+            <!-- portfolio filter (mobile) -->
+            <div class="pf-filter-wrapper" data-aos="fade-up">
+                <select class="portfolio-filter-mobile">
+                    <option value="*">Everything</option>
+                    <option value=".python">Python</option>
+                    <option value=".flask">Flask</option>
+                    <option value=".django">Django</option>
+                    <option value=".htmlcss">HTML + CSS</option>
+                </select>
+            </div>
+
+            <!-- portolio wrapper -->
+            <div class="row portfolio-wrapper" style="position: relative; height: 595.062px;">
+
+                {% for project in projects %}
+                <div class="col-md-4 col-sm-6 grid-item {% if project.python %}python{% endif %}{% if project.flask %} flask{% endif %}{% if project.django %} django{% endif %}{% if project.htmlcss %} htmlcss{% endif %}"
+                    data-tilt style="position: absolute; left: 33.3333%; top: 0px;">
+                    <a href="#small-dialog{{ project.id }}" class="work-content">
+                        <div class="portfolio-item rounded shadow-dark">
+                            <div class="details">
+                                <span class="term">{% if project.python %}Python{% endif %}{% if project.flask %},
+                                    Flask{% endif %}{% if project.django %}, Django{% endif %}{% if project.htmlcss
+                                    %},
+                                    HTML + CSS{% endif %}</span>
+                                <h4 class="title">{{ project.title }}<br>
+                                    <p style="font-size: 12px!important;font-weight: normal;">{{
+                                        project.thumbnail|safe
+                                        }}</p>
+                                </h4>
+                                <span class="more-button"><i class="fas fa-info"></i></span>
+                            </div>
+                            <div class="thumb">
+                                <img src="{{ project.image_url|safe }}" alt="Portfolio-title">
+                                <div class="mask"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <div id="small-dialog{{ project.id }}" class="white-popup zoom-anim-dialog mfp-hide newtaball">
+                        <img src="{{ project.image_url|safe }}" alt="Title">
+                        <h2>{{ project.title }}</h2>
+                        {% if current_user.is_authenticated and current_user.username == 'Eshan' %}
+                        <div>
+                            <a class="btn btn-secondary btn-sm m-1"
+                                href="{{ url_for('edit_project', project_id=project.id) }}">Update</a>
+                            <a class="btn btn-danger btn-sm m-1"
+                                href="{{ url_for('delete_project', project_id=project.id) }}">Delete</a>
+                        </div><br>
+                        {% endif %}
+                        {% if project.github_url and project.website_url %}
+                        <a target="_blank" href="{{ project.website_url }}" class="btn btn-default">Visit {{
+                            project.title }}
+                        </a> &nbsp
+                        <a target="_blank" href="{{ project.github_url }}" class="btn btn-secondary">View on GitHub
+                            <i class="fab fa-github"></i></a><br><br>
+                        {% elif project.github_url %}
+                        <a target="_blank" href="{{ project.github_url }}" class="btn btn-secondary">View on GitHub
+                            <i class="fab fa-github"></i></a><br><br>
+                        {% elif project.website_url %}
+                        <a target="_blank" href="{{ project.website_url }}" class="btn btn-secondary">Visit {{
+                            project.title }}
+                            <i class="fab fa-github"></i></a><br><br>
+                        {% endif %}
+                        {{ project.content|safe }}
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- more button -->
+            <div class="text-center mt-4" data-tilt data-tilt-scale="1.05" data-aos="fade-up">
+                <a href="https://github.com/BouncyBird" class="btn btn-secondary" target="_blank">View more on
+                    GitHub <i class="fab fa-github"></i></a>
+            </div>
+
+    </section>
+
+    <!-- section contact -->
+    <section id="contact">
+
+        <div class="container">
+
+            <!-- section title -->
+            <h2 class="section-title" style="visibility: visible;" data-aos="fade-up">Get In
+                Touch</h2>
+
+            <div class="spacer" data-height="60" style="height: 60px;"></div>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <!-- contact info -->
+                    <div class="contact-info" data-aos="fade-up">
+                        <h3 class="" style="visibility: visible;">Let's talk
+                            about everything!</h3>
+                        <p class="" style="visibility: visible;">This will
+                            email me</p>
+                    </div>
+                </div>
+
+                <div class="col-md-8" data-aos="zoom-in">
+                    <!-- Contact Form -->
+                    <form class="contact-form mt-6" method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Contact Me</legend>
+                            <main role="main" class="container">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <br>
+                                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                        {% if messages %}
+                                        {% for category, message in messages %}
+                                        <div class="alert alert-{{ category }}">
+                                            {{ message}}
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                        {% endwith %}
+                                        <br>
+                                    </div>
+                                </div>
+                            </main>
+                            <div class="form-group">
+                                {{ form.name.label(class="form-control-label") }}
+
+                                {% if form.name.errors %}
+                                {{ form.name(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.name.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.name(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+                                {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.email(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.content.label(class="form-control-label") }}
+                                {% if form.content.errors %}
+                                {{ form.content(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.content.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.content(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {% if form.recaptcha.errors %}
+                                {{ form.recaptcha(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.recaptcha.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.recaptcha(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                        </fieldset>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-default") }}
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="spacer" data-height="96" style="height: 96px;"></div>
+
+</main>
+{% endblock %}

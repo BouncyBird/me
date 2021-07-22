@@ -1,0 +1,123 @@
+{% extends "main.html" %}
+{% block content %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+        </div>
+    </div>
+</main>
+<form class="contact-form m-5" method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">{{ legend }}</legend>
+        <div class="form-group">
+            {{ form.title.label(class="form-control-label") }}
+            {% if form.title.errors %}
+            {{ form.title(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.title.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.title(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.thumbnail.label(class="form-control-label") }}
+            {% if form.thumbnail.errors %}
+            {{ form.thumbnail(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.thumbnail.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.thumbnail(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.image_url.label(class="form-control-label") }}
+            {% if form.image_url.errors %}
+            {{ form.image_url(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.image_url.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.image_url(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.website_url.label(class="form-control-label") }}
+            {% if form.website_url.errors %}
+            {{ form.website_url(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.website_url.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.website_url(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.github_url.label(class="form-control-label") }}
+            {% if form.github_url.errors %}
+            {{ form.github_url(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.github_url.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.github_url(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-check">
+            {{ form.python(class="form-check-input") }}
+            {{ form.python.label(class="form-check-label") }}
+        </div>
+        <div class="form-check">
+            {{ form.flask(class="form-check-input") }}
+            {{ form.flask.label(class="form-check-label") }}
+        </div>
+        <div class="form-check">
+            {{ form.django(class="form-check-input") }}
+            {{ form.django.label(class="form-check-label") }}
+        </div>
+        <div class="form-check">
+            {{ form.htmlcss(class="form-check-input") }}
+            {{ form.htmlcss.label(class="form-check-label") }}
+        </div>
+        <div class="form-group">
+            {{ form.content.label(class="form-control-label") }}
+            {% if form.content.errors %}
+            {{ form.content(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.content.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.content(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-default") }}
+    </div>
+</form>
+{% endblock %}
