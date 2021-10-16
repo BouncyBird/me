@@ -1,19 +1,5 @@
 {% extends "main.html" %}
 {% block content %}
-{% if hurl == 'http://eshan.biz/' %}
-<main role="main" class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <br>
-            <div class="alert alert-info">
-                My site has changed. It is now <a href="https://eshan.dev/">eshan.dev</a>. eshan.biz will soon shut
-                down.
-            </div>
-            <br>
-        </div>
-    </div>
-</main>
-{% endif %}
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
 <main role="main" class="container">
@@ -114,7 +100,7 @@
                 <h1 class="mb-2 mt-0" style="font-family: Source Code Pro;" data-aos="fade-right">Eshan Nalajala
                 </h1>
                 <span style="font-family: Source Code Pro;" data-aos="fade-right">Developer -
-                    Pythonista - Genius
+                    Tinkerer - Genius
                 </span>
 
                 <!-- social icons -->
@@ -395,7 +381,7 @@
                     <!-- service box -->
                     <div class="service-box rounded data-background padding-30 text-center text-light shadow-pink"
                         data-color="#F97B8B" style="background-color: rgb(249, 123, 139);">
-                        <img src="https://img.icons8.com/nolan/96/html-5.png" />
+                        <img src="https://img.icons8.com/nolan/64/circuit.png" />
                         <h3 class="mb-3 mt-0">{{ content.skillthreetitle|safe }} {% if current_user.is_authenticated %}
                             &nbsp <a href="{{ url_for('edit_skills') }}" class=""><i class="fas fa-edit"></i></a>{%
                             endif %}</h3>
@@ -446,7 +432,8 @@
             <div class="row portfolio-wrapper" style="position: relative; height: 595.062px;">
 
                 {% for project in projects %}
-                <div class="col-md-4 col-sm-6 grid-item {% if project.python %}python{% endif %}{% if project.flask %} flask{% endif %}{% if project.django %} django{% endif %}{% if project.htmlcss %} htmlcss{% endif %}"
+                <div data-aos="zoom-in"
+                    class="col-md-4 col-sm-6 grid-item {% if project.python %}python{% endif %}{% if project.flask %} flask{% endif %}{% if project.django %} django{% endif %}{% if project.htmlcss %} htmlcss{% endif %}"
                     data-tilt style="position: absolute; left: 33.3333%; top: 0px;">
                     <a href="#small-dialog{{ project.id }}" class="work-content">
                         <div class="portfolio-item rounded shadow-dark">

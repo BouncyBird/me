@@ -1,7 +1,9 @@
 # Source Code for my Personal Website
-This is the source code for my personal website, which you can visit at [eshan.biz](https://eshan.biz/)
+This is the source code for my personal website, which you can visit at [eshan.dev](https://eshan.dev/)
 
 # Get free DigitalOcean credit + get me free DigitalOcean credit
+**This website is hosted on [DigitalOcean](https://www.digitalocean.com)**
+
 Use my referal link to get $100 in DigitalOcean credit, plus get me $25 dollars in DigitalOcean credit:  
 
 

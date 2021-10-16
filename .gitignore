@@ -3,3 +3,4 @@
 /venv
 /files
 .env
+site.db

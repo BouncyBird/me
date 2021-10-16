@@ -1,79 +1,108 @@
-{% extends 'main.html' %}
-{% block content %}
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-<main role="main" class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <br>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                {{ message|safe }}
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-            <br>
-        </div>
-    </div>
-</main>
-{% endif %}
-{% endwith %}
-<div class="m-3">
-    <p>You are {% if not current_user.is_authenticated %}NOT{% endif %} logged in</p>
+<!DOCTYPE html>
+<html lang="en-US">
 
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Create Poll</legend>
-            <div class="form-group">
-                {{ form.question.label(class="form-control-label") }}
-                {% if form.question.errors %}
-                {{ form.question(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.question.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Eshan Nalajala</title>
+    <meta name="description" content="Eshan Nalajala">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='avatar.svg') }}">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/bootstrap.min.css') }}" type="text/css"
+        media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/all.min.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/style.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body class="dark">
+
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <br>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message|safe }}
                 </div>
-                {% else %}
-                {{ form.question(class="form-control form-control-lg") }}
+                {% endfor %}
                 {% endif %}
+                {% endwith %}
+                <br>
             </div>
-            <div class="form-group mt-3 mb-3">
-                {{ form.options.label(class="form-control-label") }}
-                {% if form.options.errors %}
-                {{ form.options(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.options.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.options(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-            <div class="form-check" data-aos="zoom-in">
-                {{ form.multiplesubs(class="form-check-input") }}
-                {{ form.multiplesubs.label(class="form-check-label") }}
-            </div>
-            <div class="form-group mt-3 mb-3">
-                {% if form.recaptcha.errors %}
-                {{ form.recaptcha(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.recaptcha.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.recaptcha(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-        </fieldset>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
         </div>
-    </form>
-</div>
-{% endblock content %}
+    </main>
+    {% endif %}
+    {% endwith %}
+    <div class="m-3">
+
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Create Poll</legend>
+                <div class="form-group">
+                    {{ form.question.label(class="form-control-label") }}
+                    {% if form.question.errors %}
+                    {{ form.question(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.question.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.question(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    {{ form.options.label(class="form-control-label") }}
+                    {% if form.options.errors %}
+                    {{ form.options(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.options.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.options(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check" data-aos="zoom-in">
+                    {{ form.multiplesubs(class="form-check-input") }}
+                    {{ form.multiplesubs.label(class="form-check-label") }}
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    {% if form.recaptcha.errors %}
+                    {{ form.recaptcha(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.recaptcha.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.recaptcha(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>

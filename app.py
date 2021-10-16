@@ -216,6 +216,8 @@ def load_user(user_id):
 
 @app.route('/', methods=["GET", "POST"])
 def home():
+    if request.host_url == 'http://eshan.biz/':
+        return redirect("https://eshan.dev")
     words = ["Full-Stack Developer", "Pythonista", "Car Enthusiast",
              "Nutrition Geek", "Rubiks Cube Solver"]
     content = Content.query.order_by(Content.date.desc()).first()
@@ -224,13 +226,13 @@ def home():
     if form.validate_on_submit():
         tlen = len(form.name.data) + len(form.email.data) + 3
         msg = Message(f'New Message from {form.name.data} - {form.email.data}', sender=(
-            form.name.data, 'noreply@eshan.dev'), recipients=['eshan.nalajala@gmail.com'])
+            form.name.data, 'noreply@eshan.dev'), recipients=['eshan.nalajala@gmail.com'], reply_to=form.email.data)
         msg.html = f'<h4>{form.name.data} - {form.email.data}<br>{"=" * tlen}<br></h4>' + \
             form.content.data
         mail.send(msg)
         flash('Message Sent!', 'success')
         return redirect(f'{url_for("home")}#contact')
-    return render_template("home.html", form=form, words=words, content=content, projects=projects, hurl=request.host_url)
+    return render_template("home.html", form=form, words=words, content=content, projects=projects)
 
 @app.route('/poll', methods=['GET', 'POST'])
 def poll_home():
@@ -595,6 +597,10 @@ def short_url_hp_redirect():
 @app.route("/s/<shorturl>")
 def short_url_redirect(shorturl):
     return redirect(f"https://url.eshan.dev/{shorturl}")
+
+@app.route("/gd")
+def geodash():
+    return render_template("gd.html")
 
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0')

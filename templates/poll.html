@@ -1,45 +1,75 @@
-{% extends 'main.html' %}
-{% block content %}
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-<main role="main" class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <br>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                {{ message|safe }}
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Eshan Nalajala</title>
+    <meta name="description" content="Eshan Nalajala">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='avatar.svg') }}">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/bootstrap.min.css') }}" type="text/css"
+        media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/all.min.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/style.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body class="dark">
+
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <br>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message|safe }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <br>
             </div>
+        </div>
+    </main>
+    {% endif %}
+    {% endwith %}
+    <div class="m-3">
+        <h1>{{ poll.question }}</h1>
+        <hr>
+        {% set li = le(poll.votes) %}
+        {% set tot = li|sum %}
+        <form action="/poll/{{ id }}/vote" enctype="multipart/form-data" method="POST">
+            {% for option in poll.options.split("||") %}
+            <input type="radio" id="{{ loop.index - 1 }}" name="vote" value="{{ option }}" required>
+            <label for="{{ loop.index - 1 }}">{{ option }} — {{li[loop.index - 1]}} votes ({% if li[loop.index - 1] != 0
+                %}{{
+                100 / (tot /
+                li[loop.index - 1])
+                }}{% else %}0{% endif
+                %}%)</label><br>
             {% endfor %}
-            {% endif %}
-            {% endwith %}
             <br>
-        </div>
+            <div class="d-grid gap-2">
+                <input type="submit" value="Vote" class="btn btn-outline-info" id="submit">
+            </div>
+        </form>
     </div>
-</main>
-{% endif %}
-{% endwith %}
-<div class="m-3">
-    <h1>{{ poll.question }}</h1>
-    <hr>
-    {% set li = le(poll.votes) %}
-    {% set tot = li|sum %}
-    <form action="/poll/{{ id }}/vote" enctype="multipart/form-data" method="POST">
-        {% for option in poll.options.split("||") %}
-        <input type="radio" id="{{ loop.index - 1 }}" name="vote" value="{{ option }}" required>
-        <label for="{{ loop.index - 1 }}">{{ option }} — {{li[loop.index - 1]}} votes ({% if li[loop.index - 1] != 0
-            %}{{
-            100 / (tot /
-            li[loop.index - 1])
-            }}{% else %}0{% endif
-            %}%)</label><br>
-        {% endfor %}
-        <br>
-        <div class="d-grid gap-2">
-            <input type="submit" value="Vote" class="btn btn-outline-info" id="submit">
-        </div>
-    </form>
-</div>
-{% endblock content %}
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>
