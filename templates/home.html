@@ -54,12 +54,12 @@
                         class="fas fa-home"></i>‎‎&nbsp ‎‎&nbsp
                     Home</a>
             </li>
-            <li data-tilt data-tilt-scale="1.1"><a href="#about" class="nav-link active"><i
+            <!--<li data-tilt data-tilt-scale="1.1"><a href="#about" class="nav-link active"><i
                         class="fas fa-info-circle"></i>‎‎&nbsp ‎‎&nbsp
                     About</a>
             </li>
             <li data-tilt data-tilt-scale="1.1"><a href="#services" class="nav-link"><i class="fas fa-code"></i>‎‎&nbsp
-                    Skills</a></li>
+                    Skills</a></li>-->
             <li data-tilt data-tilt-scale="1.1"><a href="#works" class="nav-link"><i
                         class="fas fa-code-branch"></i>‎‎&nbsp ‎‎&nbsp Projects</a>
             </li>
@@ -80,7 +80,7 @@
             style="margin-left: 50%;margin-right: 50%;">Login</a><br>
         {% endif %}
         <!-- copyright text -->
-        <span class="copyright">© 2021 Eshan Nalajala</span>
+        <span class="copyright">© 2022 Eshan Nalajala</span>
     </div>
 
 </header>
@@ -110,16 +110,16 @@
                                 data-tilt-scale="1.1" class="fab fa-github"></i></a>
                     </li>
                     <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
-                            title="My LinkedIn" href="https://www.linkedin.com/in/eshan-nalajala-8baa3a211"
-                            target="_blank"><i data-tilt data-tilt-scale="1.1" class="fab fa-linkedin"></i></a></li>
-                    <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
                             title="My StackOverflow"
                             href="https://stackoverflow.com/users/16117401/hackdolphin?tab=profile" target="_blank"><i
                                 data-tilt data-tilt-scale="1.1" class="fab fa-stack-overflow"></i></a>
                     </li>
                     <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
-                            title="My Facebook" href="https://www.facebook.com/eshan.nalajala/" target="_blank"><i
-                                data-tilt data-tilt-scale="1.1" class="fab fa-facebook"></i></a>
+                            title="My Snapchat" href="{{ url_for('snap') }}"><i data-tilt data-tilt-scale="1.1"
+                                class="fab fa-snapchat"></i></a></li>
+                    <li data-tilt data-tilt-scale="1.1" class="list-inline-item"><a data-bs-toggle="tooltip"
+                            title="My Discord(HackDolphin#9999)" href="https://discordapp.com/users/834911715522510908"
+                            target="_blank"><i data-tilt data-tilt-scale="1.1" class="fab fa-discord"></i></a>
                     </li>
                 </ul>
             </div>
@@ -224,13 +224,11 @@
         </div>
 
     </section>
-
-    <!-- section about -->
+    <!--
     <section id="about">
 
         <div class="container">
 
-            <!-- section title -->
             <h2 class="section-title" style="visibility: visible;" data-aos="fade-up">About Me
             </h2>
 
@@ -240,7 +238,6 @@
 
                 <div class="col-md-3">
                     <div class="text-center text-md-left">
-                        <!-- avatar image -->
                         <img src="{{ url_for('static', filename='avatar.svg') }}" alt="Eshan" data-aos="zoom-in">
                     </div>
                     <div class="spacer d-md-none d-lg-none" data-height="30" style="height: 30px;"></div>
@@ -250,7 +247,6 @@
                     <div class="rounded bg-dark shadow-light padding-30" data-aos="fade-right">
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- about text -->
                                 <p class="mb-0">{{ content.about|safe }} {% if current_user.is_authenticated %} &nbsp <a
                                         href="{{ url_for('edit_about') }}" class=""><i class="fas fa-edit"></i></a>{%
                                     endif %}
@@ -260,7 +256,6 @@
                                 <h3 class="text-center mb-3 mt-0">Skill Levels{% if current_user.is_authenticated %}
                                     &nbsp <a href="{{ url_for('edit_skills') }}" class=""><i
                                             class="fas fa-edit"></i></a>{% endif %}</h3>
-                                <!-- skill item -->
                                 <div class="skill-item">
                                     <div class="skill-info clearfix">
                                         <h4 class="float-left mb-3 mt-0">{{ content.skillonetitle|safe }}</h4>
@@ -276,7 +271,6 @@
                                     <div class="spacer" data-height="20" style="height: 20px;"></div>
                                 </div>
 
-                                <!-- skill item -->
                                 <div class="skill-item">
                                     <div class="skill-info clearfix">
                                         <h4 class="float-left mb-3 mt-0">{{ content.skilltwotitle|safe }}</h4>
@@ -292,7 +286,6 @@
                                     <div class="spacer" data-height="20" style="height: 20px;"></div>
                                 </div>
 
-                                <!-- skill item -->
                                 <div class="skill-item">
                                     <div class="skill-info clearfix">
                                         <h4 class="float-left mb-3 mt-0">{{ content.skillthreetitle|safe }}</h4>
@@ -308,7 +301,7 @@
                                     <div class="spacer" data-height="20" style="height: 20px;"></div>
                                 </div>
 
-                                <!-- skill item -->
+
                                 <div class="skill-item">
                                     <div class="skill-info clearfix">
                                         <h4 class="float-left mb-3 mt-0">{{ content.skillfourtitle|safe }}</h4>
@@ -328,7 +321,6 @@
                 </div>
 
             </div>
-            <!-- row end -->
 
 
         </div>
@@ -337,12 +329,10 @@
 
     </section>
 
-    <!-- section services -->
     <section id="services">
 
         <div class="container">
 
-            <!-- section title -->
             <h2 class="section-title" style="visibility: visible;" data-aos="fade-up">Coding
                 Skills
             </h2>
@@ -352,7 +342,6 @@
             <div class="row">
 
                 <div class="col-md-4" data-aos="zoom-in-right" data-aos-delay="200">
-                    <!-- service box -->
                     <div class="service-box rounded data-background padding-30 text-center text-light shadow-blue"
                         data-color="#6C6CE5" style="background-color: rgb(108, 108, 229);">
                         <img src="{{ url_for('static', filename='flask.svg') }}" alt="Flask Logo">
@@ -365,7 +354,6 @@
                 </div>
 
                 <div class="col-md-4" data-aos="zoom-in">
-                    <!-- service box -->
                     <div class="service-box rounded data-background padding-30 text-center shadow-yellow"
                         data-color="#F9D74C" style="background-color: rgb(249, 215, 76);">
                         <img src="https://img.icons8.com/nolan/96/python.png" />
@@ -378,7 +366,6 @@
                 </div>
 
                 <div class="col-md-4" data-aos="zoom-in-left" data-aos-delay="300">
-                    <!-- service box -->
                     <div class="service-box rounded data-background padding-30 text-center text-light shadow-pink"
                         data-color="#F97B8B" style="background-color: rgb(249, 123, 139);">
                         <img src="https://img.icons8.com/nolan/64/circuit.png" />
@@ -392,7 +379,7 @@
             </div>
         </div>
 
-    </section>
+    </section>-->
 
 
     <!-- section works -->

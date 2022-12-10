@@ -53,6 +53,10 @@ login_manager.init_app(app)
 ckeditor.init_app(app)
 mail.init_app(app)
 migrate = Migrate(app, db, render_as_batch=True)
+API_ENDPOINT = 'https://discord.com/api/v8'
+CLIENT_ID = '858715154131714068'
+CLIENT_SECRET = os.getenv('DC_SECRET')
+REDIRECT_URI = 'https://eshan.dev/cyberbot/oauth'
 
 
 def no_dispose(form, field):
@@ -224,15 +228,58 @@ def home():
     projects = Project.query.order_by(Project.date.desc())
     form = ContactForm()
     if form.validate_on_submit():
+        addr = str(request.environ.get('HTTP_X_FORWARDED_FOR'))
+        r = requests.get(f"http://ip-api.com/json/{addr}")
+        r = r.json()
+        if r['status'] == 'fail':
+            fail = True
+        else:
+            fail = False
         tlen = len(form.name.data) + len(form.email.data) + 3
         msg = Message(f'New Message from {form.name.data} - {form.email.data}', sender=(
             form.name.data, 'noreply@eshan.dev'), recipients=['eshan.nalajala@gmail.com'], reply_to=form.email.data)
-        msg.html = f'<h4>{form.name.data} - {form.email.data}<br>{"=" * tlen}<br></h4>' + \
-            form.content.data
+        if fail == False:
+            msg.html = f'{form.name.data} - {form.email.data}<hr>' + \
+                form.content.data + f'<hr>IP: {r["query"]}<br>Country: {r["country"]}<br>Region: {r["regionName"]}<br>City: {r["city"]}<br>Zip: {r["zip"]}<br>ISP: {r["isp"]}<br>Org: {r["org"]}<hr>Sent by <a href="https://eshan.dev/" target="_blank">eshan.dev</a>'
+        else:
+            msg.html = f'{form.name.data} - {form.email.data}<hr>' + \
+                form.content.data + f'<hr>IP: {addr}<br>Country: Unknown<br>Region: Unknown<br>City: Unknown<br>Zip: Unknown<br>ISP: Unknown<br>Org: Unknown<hr>Sent by <a href="https://eshan.dev/" target="_blank">eshan.dev</a>'
         mail.send(msg)
         flash('Message Sent!', 'success')
         return redirect(f'{url_for("home")}#contact')
-    return render_template("home.html", form=form, words=words, content=content, projects=projects)
+    return render_template("newhome.html", form=form, words=words, content=content, projects=projects)
+
+@app.route('/snap')
+def snap():
+    flash("My Snapchat is hackdolphin", 'success')
+    return redirect(url_for("home"))
+
+@app.route('/project/<id>')
+def projectview(id):
+    project = Project.query.get_or_404(id)
+    return render_template("projectview.html", project=project)
+
+@app.route('/cyberbot')
+def cyberbot():
+    project = Project.query.get_or_404(13)
+    return render_template("projectview.html", project=project)
+
+@app.route('/cyberbot/handler')
+def cyberbot_handler():
+    code = request.args.get('code')
+    data = {
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': REDIRECT_URI
+    }
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    r = requests.post('https://discord.com/api/oauth2/token', data=data, headers=headers)
+    r.raise_for_status()
+    return r.json()
 
 @app.route('/poll', methods=['GET', 'POST'])
 def poll_home():

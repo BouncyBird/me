@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+<div id="small-dialog{{ project.id }}" style="padding: 0px 0px 0px 20px;">
+    <h2 id="title">{{ project.title }}</h2>
+    {% if current_user.is_authenticated and current_user.username == 'Eshan' %}
+    <div>
+        <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('edit_project', project_id=project.id) }}">Update</a>
+        <a class="btn btn-danger btn-sm m-1" href="{{ url_for('delete_project', project_id=project.id) }}">Delete</a>
+    </div><br>
+    {% endif %}
+    {% if project.github_url and project.website_url %}
+    <a target="_blank" href="{{ project.website_url }}" class="btn btn-default">Visit {{
+        project.title }}
+    </a> &nbsp
+    <a target="_blank" href="{{ project.github_url }}" class="btn btn-secondary">View on GitHub
+        <i class="fab fa-github"></i></a><br><br>
+    {% elif project.github_url %}
+    <a target="_blank" href="{{ project.github_url }}" class="btn btn-secondary">View on GitHub
+        <i class="fab fa-github"></i></a><br><br>
+    {% elif project.website_url %}
+    <a target="_blank" href="{{ project.website_url }}" class="btn btn-secondary">Visit {{
+        project.title }}
+        <i class="fab fa-github"></i></a><br><br>
+    {% endif %}
+    {{ project.content|safe }}
+</div>
+{% endblock content %}
